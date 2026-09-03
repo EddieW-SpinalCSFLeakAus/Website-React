@@ -174,13 +174,18 @@
 /* ==========================================================================
    Desktop (>= 900px): horizontal bar, hover/focus-open dropdowns
    ========================================================================== */
+/* Capped by input capability rather than viewport width, so a narrow
+   desktop browser window still gets the cap (unlike a min-width breakpoint,
+   which would leave the logo unbounded below 900px on desktop). */
+@media (hover: hover) {
+  .brand__logo {
+    max-width: 275px;
+  }
+}
+
 @media (min-width: 900px) {
   .nav-toggle {
     display: none;
-  }
-
-  .brand__logo {
-    max-width: 275px;
   }
 
   .primary-nav {
