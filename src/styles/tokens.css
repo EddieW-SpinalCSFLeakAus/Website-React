@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Design tokens — colour palette + spacing scale
+   Colour values come directly from the org's brand palette.
+   Light mode is the default (:root). Dark mode overrides via
+   [data-theme="dark"], following an explicit toggle (see ThemeContext).
+   ========================================================================== */
+
+:root {
+  /* ---- Brand (fixed across themes) ---- */
+  --color-teal: #008080;
+  --color-green: #8cc63f;
+
+  /* ---- Supporting blues ---- */
+  --blue-900: #002424;
+  --blue-800: #003636;
+  --blue-700: #004c4c;
+  --blue-600: #006666;
+  --blue-400: #33a3a3;
+  --blue-300: #66c2c2; /* dark-mode text */
+  --blue-200: #8ad4d4; /* dark-mode text */
+  --blue-100: #b3e6e6; /* dark-mode text */
+
+  /* ---- Supporting greens ---- */
+  --green-900: #283f0a;
+  --green-800: #3a5a0f;
+  --green-700: #4f7a16;
+  --green-600: #6ea52a;
+  --green-400: #a9d96e; /* dark-mode text */
+  --green-300: #c6e8a0; /* dark-mode text */
+  --green-200: #d9f0bf; /* dark-mode text */
+  --green-100: #ecf8de; /* dark-mode text */
+
+  /* ---- Semantic tokens: light theme (default) ---- */
+  --color-primary: var(--color-teal);
+  --color-primary-strong: var(--blue-700);
+  --color-accent: var(--color-green);
+  --color-accent-strong: var(--green-700);
+
+  --bg-page: #ffffff;
+  --bg-surface: #ffffff;
+  --bg-surface-tint: #f2f9f9;
+  --bg-highlight: var(--blue-100);
+  --bg-footer: var(--blue-900);
+  --bg-header: #ffffff;
+
+  --text-primary: var(--blue-900);
+  --text-secondary: #33504f;
+  --text-on-dark: var(--green-100);
+  --text-on-dark-secondary: var(--blue-100);
+  --text-link: var(--color-teal);
+  --text-link-hover: var(--blue-700);
+
+  --border-color: var(--blue-100);
+  --border-color-strong: var(--color-teal);
+
+  --focus-ring: #005fcc;
+
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  --bg-page: var(--blue-900);
+  --bg-surface: var(--blue-700);
+  --bg-surface-tint: var(--blue-800);
+  --bg-highlight: var(--green-900);
+  --bg-footer: #000000;
+  --bg-header: #000000;
+
+  --text-primary: var(--green-100);
+  --text-secondary: var(--blue-100);
+  --text-on-dark: var(--green-100);
+  --text-on-dark-secondary: var(--blue-100);
+  --text-link: var(--blue-200);
+  --text-link-hover: var(--green-300);
+
+  --border-color: var(--blue-600);
+  --border-color-strong: var(--blue-300);
+
+  --focus-ring: var(--green-300);
+
+  color-scheme: dark;
+}
+
+:root {
+  /* ---- Spacing scale (mobile-first base; see layout.css for section spacing) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Deliberately generous — about 3x a typical marketing-site rhythm,
+     per the requested design direction. */
+  --space-section-mobile: 4.5rem;
+  --space-section-desktop: 7.5rem;
+  --space-block-mobile: 3rem;
+  --space-block-desktop: 4.5rem;
+
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --container-max: 75rem;
+
+  --font-sans:
+    'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}

@@ -1,0 +1,230 @@
+/* Mobile-first: base rules are the small-screen layout; desktop is added
+   via min-width media queries below. */
+
+.site-header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-3);
+  gap: var(--space-4);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand__logo {
+  width: auto;
+  height: auto;
+  min-width: 200px;
+}
+
+/* ---- Mobile toggle button ---- */
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid var(--border-color-strong);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.nav-toggle__icon,
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  position: relative;
+}
+
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle__icon::before {
+  top: -7px;
+}
+
+.nav-toggle__icon::after {
+  top: 7px;
+}
+
+/* ---- Mobile nav panel ---- */
+.primary-nav {
+  display: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+  max-height: calc(100vh - 100%);
+  overflow-y: auto;
+}
+
+.primary-nav--open {
+  display: block;
+}
+
+.primary-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-4) var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.primary-nav__link {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--text-primary);
+  border: 1px solid var(--color-teal);
+  border-radius: var(--radius-sm);
+}
+
+/* The current page gets a bottom-border indicator instead of the resting
+   outline every other link has. */
+.primary-nav__link.is-active {
+  border-color: transparent;
+  border-bottom: 3px solid var(--color-teal);
+  border-radius: 0;
+  padding-bottom: calc(var(--space-2) - 3px);
+}
+
+/* On mobile, a dropdown's children are always listed under it (there's no
+   hover state on touch, so there's nothing to toggle open/closed). */
+.dropdown-menu {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  border-left: 2px solid var(--border-color);
+}
+
+.dropdown-menu__link {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  text-decoration: none;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.dropdown-menu__link.is-active {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Extra ".btn" in the selector raises specificity above the base .btn rule
+   (same-specificity selectors would otherwise depend on CSS source order,
+   which isn't guaranteed across bundled files) so this reliably wins. */
+.btn.nav-cta {
+  align-self: flex-start;
+  padding: var(--space-2) var(--space-4);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* ---- Theme switch, floating under the navbar's right edge ----
+   Absolutely positioned (relative to .site-header__inner) so it's taken out
+   of normal document flow entirely — it overlays the page instead of
+   pushing content below the header downward. It spans the full width
+   (inset-inline: 0) purely so its inner .container can reuse the navbar's
+   own padding to line up exactly; pointer-events are disabled on that empty
+   strip so it doesn't intercept clicks on whatever content it overlaps. */
+.theme-switch-row {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  margin-top: var(--space-2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.theme-switch-row__inner {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Desktop (>= 900px): horizontal bar, hover/focus-open dropdowns
+   ========================================================================== */
+@media (min-width: 900px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .brand__logo {
+    max-width: 275px;
+  }
+
+  .primary-nav {
+    display: block;
+    position: static;
+    border-bottom: none;
+    max-height: none;
+    overflow: visible;
+    /* Overrides the flex item's default min-width:auto (content's
+       min-content size), which would otherwise stop it shrinking small
+       enough to let its own list wrap instead of x-overflowing. */
+    min-width: 0;
+  }
+
+  .primary-nav__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    gap: var(--space-2);
+  }
+
+  .primary-nav__item {
+    position: relative;
+  }
+
+  /* On desktop, hide the dropdown until it's hovered/focused. */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: var(--space-2);
+    background: var(--bg-page);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    min-width: 16rem;
+    box-shadow: 0 12px 24px -12px rgb(0 0 0 / 0.25);
+    z-index: 10;
+  }
+
+  .primary-nav__item.has-dropdown:hover .dropdown-menu,
+  .primary-nav__item.has-dropdown:focus-within .dropdown-menu {
+    display: flex;
+  }
+}

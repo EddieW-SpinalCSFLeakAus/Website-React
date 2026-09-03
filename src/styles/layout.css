@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Layout primitives — mobile-first
+   Breakpoints: 768px (tablet), 1080px (desktop)
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-7);
+  }
+}
+
+/* A "section" is one full band of the page (hero, intro, card grid, CTA...).
+   Generous vertical rhythm is deliberate — see tokens.css for the reasoning. */
+.section {
+  padding-block: var(--space-section-mobile);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--space-section-desktop);
+  }
+}
+
+/* The wrapper for a "templated" inner page (GenericPage, ClinicianDirectory,
+   Contact, SectionLanding, NotFound) — deliberately tight above <main>
+   (right under the header), generous below it before the footer. */
+.page-main {
+  padding-top: 1rem;
+  padding-bottom: var(--space-section-mobile);
+}
+
+@media (min-width: 768px) {
+  .page-main {
+    padding-bottom: var(--space-section-desktop);
+  }
+}
+
+.section--tint {
+  background: var(--bg-surface-tint);
+}
+
+.section--dark {
+  background: var(--bg-footer);
+  color: var(--text-on-dark);
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3 {
+  color: var(--text-on-dark);
+}
+
+.section--dark p {
+  color: var(--text-on-dark-secondary);
+}
+
+/* Stack of content blocks within a section, spaced generously */
+.stack > * + * {
+  margin-top: var(--space-block-mobile);
+}
+
+@media (min-width: 768px) {
+  .stack > * + * {
+    margin-top: var(--space-block-desktop);
+  }
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.breadcrumbs {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-7);
+  color: var(--text-secondary);
+}
+
+.breadcrumbs a {
+  color: var(--text-secondary);
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: '›';
+  margin-left: var(--space-2);
+  color: var(--border-color-strong);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  padding: 0.75em 1.5em;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: var(--color-primary-strong);
+  border-color: var(--color-primary-strong);
+  color: #ffffff;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.btn--outline:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.btn--accent {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--blue-900);
+}
+
+.btn--accent:hover {
+  background: var(--color-accent-strong);
+  border-color: var(--color-accent-strong);
+  color: #ffffff;
+}
+
+.coming-soon-banner {
+  background: var(--bg-highlight);
+  border: 1px solid var(--border-color-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+  font-size: 0.95rem;
+}
+
+.coming-soon-banner strong {
+  color: var(--color-primary);
+}
+
+.theme-switch {
+  /* The switch's floating wrapper (Navbar.css) has pointer-events:none so
+     it doesn't block clicks on whatever it overlaps — re-enable them here,
+     on just the button itself. */
+  pointer-events: auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 3.25rem;
+  height: 1.75rem;
+  padding: 0.15rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color-strong);
+  background: var(--bg-surface-tint);
+  cursor: pointer;
+}
+
+.theme-switch__icon {
+  flex: 1;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.theme-switch__thumb {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 50%;
+  background: var(--bg-page);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+  transition: transform 0.2s ease;
+}
+
+.theme-switch[aria-checked='true'] .theme-switch__thumb {
+  transform: translateX(1.5rem);
+}

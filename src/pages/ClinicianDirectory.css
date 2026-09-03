@@ -1,0 +1,108 @@
+.directory-filters {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--space-5);
+}
+
+.directory-filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.directory-filters__field label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.directory-filters input,
+.directory-filters select {
+  padding: var(--space-3);
+  border: 1px solid var(--border-color-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.directory-results-count {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Kept in sync with .clinician-list's own gap below, so the space before
+   the disclaimer visually matches the space between the cards above it. */
+.clinician-directory__disclaimer {
+  margin-top: var(--space-5);
+}
+
+.clinician-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.clinician-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.clinician-card__header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.clinician-card__badge {
+  background: var(--bg-highlight);
+  color: var(--color-primary-strong);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.2em 0.6em;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.clinician-card__specialty {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.clinician-card__location p {
+  margin: 0.2em 0;
+  font-size: 0.95rem;
+}
+
+.clinician-card__or {
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-block: var(--space-2) !important;
+}
+
+.clinician-card details {
+  border-top: 1px solid var(--border-color);
+  padding-top: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.clinician-card summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .directory-filters {
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: end;
+  }
+}
+
+@media (min-width: 900px) {
+  .clinician-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

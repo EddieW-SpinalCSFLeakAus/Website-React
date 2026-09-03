@@ -1,0 +1,48 @@
+.page-section__image {
+  border-radius: var(--radius-md);
+  margin-block: var(--space-4);
+  max-width: 22rem;
+}
+
+.cta-block {
+  background: var(--bg-highlight);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.person-card {
+  text-align: center;
+}
+
+.person-card__photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 999px;
+  margin-bottom: var(--space-3);
+  background: var(--bg-surface-tint);
+}
+
+.person-card__name {
+  font-weight: 700;
+  margin: 0;
+}
+
+.person-card__role {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.section-landing__grid .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  text-decoration: none;
+}
+
+.section-landing__grid .card h3 {
+  color: var(--color-primary);
+}
