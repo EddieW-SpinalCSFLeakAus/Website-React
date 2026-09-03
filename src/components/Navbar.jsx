@@ -44,7 +44,11 @@ export default function Navbar() {
       <header className="site-header">
         <div className="container site-header__inner">
           <Link to="/" className="brand" aria-label="Spinal CSF Leak Australia — home">
-            <img src="/images/logo.svg" alt="" className="brand__logo" />
+            <img
+              src={`${import.meta.env.BASE_URL}images/logo.svg`}
+              alt=""
+              className="brand__logo"
+            />
           </Link>
 
           <button
